@@ -122,11 +122,11 @@ const Navbar = () => {
 				>
 					{pages.map((page) => (
 						<Button
-							key={page}
+							key={page.label}
 							sx={{ color: 'white', justifyContent: 'flex-start' }}
 							onClick={() => setMobileMenuOpen(false)}
 						>
-							{page}
+							{page.label}
 						</Button>
 					))}
 					<Divider sx={{ borderColor: 'white', my: 1 }} />

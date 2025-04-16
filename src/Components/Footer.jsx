@@ -7,6 +7,7 @@ import { getFacilities, getFooter } from '../Services/APIService';
 const Footer = () => {
     const [footer, setFooter] = useState({});
     const [facilities, setFacilities] = useState({})
+    const [loading, setLoading] = useState(false)
 
     const fetchFooter = async () => {
         const response = await getFooter()
@@ -15,7 +16,7 @@ const Footer = () => {
     }
 
     const fetchFacilities = async () => {
-        const response = await getFacilities()
+        const response = await getFacilities(setLoading)
         setFacilities(response.data)
         console.log(response.data)
     }

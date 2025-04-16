@@ -12,11 +12,15 @@ export const getMenuBar = async () => {
     }
 }
 
-export const getSlider = async () => {
+export const getSlider = async (setLoading) => {
     try {
+        setLoading(true)
         return await axios.get(`${API_URL}/getAllHostelSlideBars`)
     } catch (error) {
         console.error(error)
+        return null
+    } finally {
+        setLoading(false)
     }
 }
 
@@ -28,26 +32,86 @@ export const getFooter = async () => {
     }
 }
 
-export const getFacilities = async () => {
+export const getFacilities = async (setLoading) => {
     try {
+        setLoading(true)
         return await axios.get(`${API_URL}/getAllFacilities`)
     } catch (error) {
         console.error(error)
+        return null;
+    } finally {
+        setLoading(false)
     }
 }
 
-export const getPlacesNearby = async () => {
+export const getPlacesNearby = async (setLoading) => {
     try {
+        setLoading(true)
         return await axios.get(`${API_URL}/placesNearby/all`)
     } catch (error) {
         console.error(error)
+        return null
+    } finally {
+        setLoading(false)
     }
 }
 
-export const getAllTestimonials = async () => {
+export const getAllTestimonials = async (setLoading) => {
     try {
+        setLoading(true)
         return await axios.get(`${API_URL}/hostel-testimonials/getAllTestimonials`)
     } catch (error) {
         console.error(error)
+        setLoading(false)
+    } finally {
+        setLoading(false)
+    }
+}
+
+export const getAllRules = async (setLoading) => {
+    try {
+        setLoading(true)
+        return await axios.get(`${API_URL}/getRuleById/getAllRules`)
+    } catch (error) {
+        console.error(error)
+        return null
+    } finally {
+        setLoading(false)
+    }
+}
+
+export const getAllPhotos = async (setLoading) => {
+    try {
+        setLoading(true)
+        return await axios.get(`${API_URL}/getAllPhotos`)
+    } catch (error) {
+        console.error(error)
+        return null
+    } finally {
+        setLoading(false)
+    }
+}
+
+export const getContactInfo = async (setLoading) => {
+    try {
+        setLoading(true)
+        return await axios.get(`${API_URL}/getAllHostelContacts`)
+    } catch (error) {
+        console.error(error)
+        return null
+    } finally {
+        setLoading(false)
+    }
+}
+
+export const getAboutUs = async (setLoading) => {
+    try {
+        setLoading(true)
+        return await axios.get(`${API_URL}/getAllAboutUs`)
+    } catch (error) {
+        console.error(error)
+        return null
+    } finally {
+        setLoading(false)
     }
 }
