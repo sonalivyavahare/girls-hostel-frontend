@@ -14,18 +14,26 @@ import Facility from './Pages/Facility';
 import NearByPlaces from './Pages/NearByPlaces';
 import { HostelThemeProvider } from './Services/HostelThemeContext';
 import TestimonialPage from './Pages/TestimonialPage';
+import ContactUs from './Pages/ContactUs';
+import RulesAndRegulations from './Pages/RulesAndRegulations';
+import Gallary from './Pages/Gallary';
+import AboutUs from './Pages/AboutUs';
 
 
 function AppContent() {
 	return (
 		<>
 			<Routes>
-				<Route path="/" element={<Navigate to="/jui-hostel/" replace />} />
-				<Route path="/jui-hostel/*" element={<Layout />}>
+				<Route path="/" element={<Navigate to="/hostel/website/" replace />} />
+				<Route path="/hostel/website/*" element={<Layout />}>
 					<Route path="" element={<Home />} />
 					<Route path="facilities" element={<Facility />} />
 					<Route path="near-by-places" element={<NearByPlaces />} />
 					<Route path="testimonials" element={<TestimonialPage />} />
+					<Route path="contact" element={<ContactUs />} />
+					<Route path="rules-regulations" element={<RulesAndRegulations />} />
+					<Route path="gallary" element={<Gallary />} />
+					<Route path="about-us" element={<AboutUs />} />
 				</Route>
 			</Routes>
 		</>

@@ -2,6 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://localhost:9090"
 
+// const API_URL = "https://pjsofttech.in:29443"
+
 export const getMenuBar = async () => {
     try {
         return await axios.get(`${API_URL}/getAllHostelManuBars`)

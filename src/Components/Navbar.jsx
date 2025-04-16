@@ -17,13 +17,16 @@ import Carousel from './Carousel';
 import { Link, useLocation } from 'react-router-dom';
 import { useHostelTheme } from '../Services/HostelThemeContext';
 
-const SITE_URI = '/jui-hostel'
+export const SITE_URI = '/hostel/website'
 const pages = [
 	{ label: 'Home', path: `${SITE_URI}` },
 	{ label: 'Facilities', path: `${SITE_URI}/facilities` },
 	{ label: 'Places Near By', path: `${SITE_URI}/near-by-places` },
 	{ label: 'Testimonials', path: `${SITE_URI}/testimonials` },
+	{ label: 'Rules and Regulations', path: `${SITE_URI}/rules-regulations` },
+	{ label: 'Gallary', path: `${SITE_URI}/gallary` },
 	{ label: 'Contact', path: `${SITE_URI}/contact` },
+	{ label: 'About Us', path: `${SITE_URI}/about-us` },
 ];
 const Navbar = () => {
 	const location = useLocation();
@@ -51,7 +54,7 @@ const Navbar = () => {
 
 	return (
 		<>
-			<AppBar position="static" sx={{ bgcolor: menuBar.hostelManuBarColor || 'primary.main' }}>
+			<AppBar position="static" sx={{ bgcolor: menuBar?.hostelManuBarColor || 'primary.main' }}>
 				<Container maxWidth="lg">
 					<Toolbar disableGutters>
 						{/* Logo */}

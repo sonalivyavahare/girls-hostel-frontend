@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getPlacesNearby } from '../Services/APIService'
 import { Link, useLocation } from 'react-router-dom'
 import { useHostelTheme } from '../Services/HostelThemeContext'
+import { SITE_URI } from './Navbar'
 
 const PlacesNearBy = () => {
     const location = useLocation()
@@ -87,10 +88,10 @@ const PlacesNearBy = () => {
             </Box>
 
             {
-                (location.pathname === "/jui-hostel" || location.pathname === "/jui-hostel/") && (
+                (location.pathname === SITE_URI || location.pathname === SITE_URI+"/") && (
                     <Box textAlign="center" sx={{ padding: 2 }}>
                         <Button variant='contained' component={Link}
-                            to={"/jui-hostel/near-by-places"} sx={{ bgcolor: `${menuBarColor}`, padding: "12px 24px", fontSize: "16px", textTransform: "none" }}>View All Near By Places</Button>
+                            to={`${SITE_URI}/near-by-places`} sx={{ bgcolor: `${menuBarColor}`, padding: "12px 24px", fontSize: "16px", textTransform: "none" }}>View All Near By Places</Button>
                     </Box>
                 )
             }

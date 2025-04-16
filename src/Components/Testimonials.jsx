@@ -4,6 +4,7 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import { useHostelTheme } from '../Services/HostelThemeContext';
 import { getAllTestimonials } from '../Services/APIService';
 import { Link, useLocation } from 'react-router-dom';
+import { SITE_URI } from './Navbar';
 
 const Testimonials = ({ testimonials = [] }) => {
     const { menuBarColor } = useHostelTheme()
@@ -28,10 +29,10 @@ const Testimonials = ({ testimonials = [] }) => {
             </Box>
 
             {
-                (location.pathname === "/jui-hostel" || location.pathname === "/jui-hostel/") && (
+                (location.pathname === SITE_URI || location.pathname === SITE_URI + "/") && (
                     <Box textAlign="center" sx={{ padding: 2 }}>
                         <Button variant='contained' component={Link}
-                            to={"/jui-hostel/testimonials"} sx={{ bgcolor: menuBarColor, padding: "12px 24px", fontSize: "16px", textTransform: "none" }}>View All Testimonials</Button>
+                            to={`${SITE_URI}/testimonials`} sx={{ bgcolor: `${menuBarColor}`, padding: "12px 24px", fontSize: "16px", textTransform: "none" }}>View All Testimonials</Button>
                     </Box>
                 )
             }

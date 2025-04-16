@@ -4,10 +4,11 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import { getFacilities } from '../Services/APIService';
 import { Link, useLocation } from 'react-router-dom';
 import { useHostelTheme } from '../Services/HostelThemeContext';
+import { SITE_URI } from './Navbar';
 
 const Facilities = ({ facilities }) => {
     const location = useLocation()
-    const {menuBarColor} = useHostelTheme()
+    const { menuBarColor } = useHostelTheme()
     return (
         <>
             <Box display="flex" alignItems="center" justifyContent="center" sx={{ padding: 2 }}>
@@ -30,10 +31,10 @@ const Facilities = ({ facilities }) => {
             </Box>
 
             {
-                 (location.pathname === "/jui-hostel" || location.pathname === "/jui-hostel/") && (
+                (location.pathname === SITE_URI || location.pathname === SITE_URI + "/") && (
                     <Box textAlign="center" sx={{ padding: 2 }}>
                         <Button variant='contained' component={Link}
-                            to={"/jui-hostel/facilities"} sx={{ bgcolor: menuBarColor, padding: "12px 24px", fontSize: "16px", textTransform: "none" }}>View All Facilities</Button>
+                            to={`${SITE_URI}/facilities`} sx={{ bgcolor: `${menuBarColor}`, padding: "12px 24px", fontSize: "16px", textTransform: "none" }}>View All Facilities</Button>
                     </Box>
                 )
             }
