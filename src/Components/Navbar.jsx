@@ -12,8 +12,6 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { getMenuBar } from '../Services/APIService';
-import Slider from './Carousel';
-import Carousel from './Carousel';
 import { Link, useLocation } from 'react-router-dom';
 import { useHostelTheme } from '../Services/HostelThemeContext';
 

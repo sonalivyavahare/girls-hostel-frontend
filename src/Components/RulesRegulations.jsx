@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import RulesCard from './RulesCard';
-import { getAllRules } from '../Services/APIService';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import { useHostelTheme } from '../Services/HostelThemeContext';
 import { Link, useLocation } from 'react-router-dom';
 import { SITE_URI } from './Navbar';
 
-const RulesRegulations = ({rules, loading}) => {
+const RulesRegulations = ({ rules, loading }) => {
     const { menuBarColor } = useHostelTheme()
     const location = useLocation()
 
@@ -24,12 +23,16 @@ const RulesRegulations = ({rules, loading}) => {
                     <CircularProgress sx={{ color: menuBarColor }} />
                     <Typography variant='body1'>Loading Rules</Typography>
                 </Box>
+            ) : rules.length === 0 ? (
+                <Box display="flex" justifyContent="center" alignItems="center" sx={{ minHeight: "300px" }}>
+                    <Typography variant='body1' color="textSecondary">No Rules Found</Typography>
+                </Box>
             ) : (
                 <Box sx={{ px: 2, py: 2, background: '#fff' }}>
                     <Grid container spacing={4}>
-                        {rules.map((rule) => (
-                            <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={rule.ruleId}>
-                                <RulesCard {...rule} />
+                        {rules.map((rule, index) => (
+                            <Grid item xs={12} sm={6} md={4} key={index}>
+                                <RulesCard ruleId={index + 1} ruleDescription={rule.ruleDescription} />
                             </Grid>
                         ))}
                     </Grid>

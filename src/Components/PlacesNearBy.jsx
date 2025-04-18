@@ -1,10 +1,8 @@
 import { Box, Button, Card, CardMedia, CircularProgress, Divider, Grid, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { getPlacesNearby } from '../Services/APIService'
+import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useHostelTheme } from '../Services/HostelThemeContext'
 import { SITE_URI } from './Navbar'
-import { getPlaces } from '../Services/APICalling'
 
 const PlacesNearBy = ({nearbyPlaces, loading}) => {
     const location = useLocation()

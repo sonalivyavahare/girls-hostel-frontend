@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { getAllTestimonials } from '../Services/APIService'
 import Testimonials from '../Components/Testimonials'
 import { Box } from '@mui/material'
 import { getTestimonials } from '../Services/APICalling'

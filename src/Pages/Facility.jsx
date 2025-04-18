@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Facilities from '../Components/Facilities'
-import { getFacilities } from '../Services/APIService'
 import { Box } from '@mui/material'
 import { fetchFacilities } from '../Services/APICalling'
 

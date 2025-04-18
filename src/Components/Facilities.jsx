@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import FacilityCard from './FacilityCard';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
-import { getFacilities } from '../Services/APIService';
 import { Link, useLocation } from 'react-router-dom';
 import { useHostelTheme } from '../Services/HostelThemeContext';
 import { SITE_URI } from './Navbar';

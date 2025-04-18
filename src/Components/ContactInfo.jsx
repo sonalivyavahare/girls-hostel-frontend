@@ -4,7 +4,6 @@ import { Box, Card, CardContent, CircularProgress, Grid, Typography } from '@mui
 import { useHostelTheme } from '../Services/HostelThemeContext'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
-import FaxIcon from '@mui/icons-material/Print';
 import EmailIcon from '@mui/icons-material/Email';
 
 
@@ -58,7 +57,7 @@ const ContactInfo = () => {
                     <CircularProgress sx={{ color: menuBarColor }} />
                     <Typography variant='body1'>Loading Contact</Typography>
                 </Box>
-            ) : (
+            ) : cardData && (
                 <>
                     <Box sx={{ py: 4 }}>
                         <Grid container spacing={3} justifyContent="center">
@@ -89,6 +88,7 @@ const ContactInfo = () => {
                                         .parseFromString(contactInfo.hostelMapUrl, "text/html")
                                         .querySelector("iframe")?.src
                                 }
+                                title="Location map for our hostel"
                                 width="100%"
                                 height="450"
                                 style={{ border: "1px solid black" }}

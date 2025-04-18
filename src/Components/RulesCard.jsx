@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Paper, Typography } from '@mui/material';
+import { Box, Card, CardContent, Typography } from '@mui/material';
 import React from 'react'
 import { useHostelTheme } from '../Services/HostelThemeContext';
 

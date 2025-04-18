@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import TestimonialCard from './TestimonialCard';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import { useHostelTheme } from '../Services/HostelThemeContext';
-import { getAllTestimonials } from '../Services/APIService';
 import { Link, useLocation } from 'react-router-dom';
 import { SITE_URI } from './Navbar';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Container, Typography, Link, IconButton, Divider, Grid } from '@mui/material';
+import { Box, Typography, IconButton, Divider, Grid } from '@mui/material';
 import { Email, Facebook, Instagram, LocationOn, Phone, Twitter, WhatsApp, YouTube } from '@mui/icons-material'
 import { getFacilities, getFooter } from '../Services/APIService';
 
