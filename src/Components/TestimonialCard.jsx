@@ -4,7 +4,7 @@ import React from 'react'
 const TestimonialCard = ({ testimonial }) => {
     console.log(testimonial)
    return( 
-   <Card sx={{ maxWidth: 400, p: 2, m: 1, borderRadius: 3, boxShadow: 3 }}>
+   <Card sx={{  p: 2, m: 1, borderRadius: 3, boxShadow: 3 }}>
         <CardContent>
             <Typography variant="body1" sx={{ mb: 2 }}>
                 {testimonial.description}

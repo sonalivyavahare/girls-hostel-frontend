@@ -47,7 +47,7 @@ const Carousel = () => {
 								<Box key={index} sx={{ padding: 2 }}>
 									<Paper sx={{
 										bgcolor: carouselItems.slideBarColor,
-										height: '500px', display: 'flex',
+										height: '380px', display: 'flex',
 										alignItems: 'center', justifyContent: 'center',
 										overflow: 'hidden',
 										borderRadius: "10px",
@@ -59,7 +59,7 @@ const Carousel = () => {
 											style={{
 												width: '100%',
 												height: '100%',
-												objectFit: 'contain',
+												objectFit: 'cover',
 												borderRadius: 8
 											}}
 										/>

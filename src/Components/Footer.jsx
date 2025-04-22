@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, IconButton, Divider, Grid } from '@mui/material';
+import { Box, Typography, IconButton, Divider, Grid, Button } from '@mui/material';
 import { Email, Facebook, Instagram, LocationOn, Phone, Twitter, WhatsApp, YouTube } from '@mui/icons-material'
 import { getFacilities, getFooter } from '../Services/APIService';
+import { Link } from 'react-router-dom';
+import { SITE_URI } from './Navbar';
 
 
 const Footer = () => {
@@ -85,8 +87,26 @@ const Footer = () => {
                 </IconButton>
             </Grid>
 
-            <Divider sx={{ backgroundColor: "white", width: "100%", margin: "20px auto" }} />
+            {/* <Divider sx={{ backgroundColor: "white", width: "100%", margin: "20px auto" }} /> */}
 
+
+            <Grid container justifyContent="center" alignItems="center" mt={3}>
+                <Grid item size={{ xs: 12, md: 3 }} display="flex" justifyContent="center" alignItems="center" flexDirection="column" >
+                    <Button component={Link}
+                        to={`${SITE_URI}/terms-and-conditions`} color="inherit"> Terms & Conditions</Button>
+                </Grid>
+                <Grid item size={{ xs: 12, md: 3 }} display="flex" justifyContent="center" alignItems="center" flexDirection="column" >
+                    <Button component={Link}
+                        to={`${SITE_URI}/privacy-policy`}
+                        color='inherit'> Privacy Policy</Button>
+                </Grid>
+                <Grid item size={{ xs: 12, md: 3 }} display="flex" justifyContent="center" alignItems="center" flexDirection="column" >
+                    <Button component={Link}
+                        to={`${SITE_URI}/refund-policy`} color='inherit'> Refund Policy</Button>
+                </Grid>
+            </Grid>
+
+            <Divider sx={{ backgroundColor: "white", width: "100%", margin: "20px auto" }} />
 
             <Grid container justifyContent="center" alignItems="center" mt={3}>
                 <Grid item size={{ xs: 12, md: 6 }} >
@@ -108,8 +128,6 @@ const Footer = () => {
                             style={{ height: '15px' }}
                         />
                     </Box>
-
-                    
                 </Grid>
             </Grid>
         </Box>

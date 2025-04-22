@@ -1,4 +1,5 @@
 import axios from "axios";
+import { handleError } from "./ToastMessages";
 
 const API_URL = "http://localhost:9090"
 
@@ -114,5 +115,75 @@ export const getAboutUs = async (setLoading) => {
         return null
     } finally {
         setLoading(false)
+    }
+}
+
+export const getUrlMappings = async () => {
+    try {
+        return await axios.get(`${API_URI}/getAllHostelUrlMappings`)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const getHostelPolicyByType = async (type) => {
+    try {
+        return await axios.get(`${API_URI}/getHostelPolicyByType/${type}`)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const getQRCode = async () => {
+    try {
+        const response = await axios.get(`${API_URI}/generate-qrcode`, {
+            responseType: "arraybuffer"
+        })
+
+        const image = btoa(
+            new Uint8Array(response.data).reduce(
+                (data, byte) => data + String.fromCharCode(byte), ""
+            )
+        );
+        return image
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const registerUser = async (data) => {
+    try {
+        return await axios.post(`${API_URI}/hostelUsers/registerUser`, data)
+    } catch (error) {
+        handleError(error.response.data)
+        console.log(error)
+    }
+}
+
+export const loginUser = async (data) => 
+    {
+    try {
+        return await axios.post(`${API_URI}/hostelUsers/loginHostelUser`, data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getDetails = async (userId) => {
+    try {
+        return await axios.get(`${API_URI}/hostelUsers/getHostelUserById/${userId}`)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateProfile = async (data, userId) => {
+    try {
+        return await axios.put(`${API_URI}/hostelUsers/updateHostelUser/${userId}`, data)
+    } catch (error) {
+        handleError(error.response.data)
+        console.log(error)
     }
 }

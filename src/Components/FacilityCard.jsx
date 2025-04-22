@@ -8,8 +8,6 @@ const FacilityCard = ({ image, title, description }) => {
         <Card
             sx={{
                 position: 'relative',
-                width: 385,
-                height: 350,
                 borderRadius: 2,
                 overflow: 'hidden',
                 boxShadow: 4,

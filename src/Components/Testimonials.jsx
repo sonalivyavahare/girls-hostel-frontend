@@ -13,7 +13,7 @@ const Testimonials = ({ testimonials = [], loading }) => {
         <>
             <Box display="flex" alignItems="center" justifyContent="center" sx={{ padding: 2 }}>
                 <Box sx={{ width: "15%", borderBottom: `4px solid ${menuBarColor}`, mr: 2 }} />
-                <Typography variant="h3" fontSize="32px" fontWeight="bold" color={menuBarColor} textTransform="uppercase">WHAT PEOPLE SAY
+                <Typography variant="h3" fontSize="32px" fontWeight="bold" color={menuBarColor} textTransform="uppercase">What Says About
                 </Typography>
                 <Box sx={{ width: "15%", borderBottom: `4px solid ${menuBarColor}`, ml: 2 }} />
             </Box>
@@ -25,7 +25,7 @@ const Testimonials = ({ testimonials = [], loading }) => {
                 </Box>
             ) : (
                 <>
-                    <Box sx={{ padding: 2 }}>
+                    <Box sx={{ padding: 1 }}>
                         <Grid container spacing={2}>
                             {Array.isArray(testimonials) && testimonials.length > 0 && testimonials.map((testimonial, index) => (
                                 <Grid item key={index} size={{ xs: 12, sm: 6, md: 4, }}>

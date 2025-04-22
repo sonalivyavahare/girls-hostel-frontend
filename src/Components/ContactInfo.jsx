@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getContactInfo } from '../Services/APIService'
+import { getContactInfo, getQRCode } from '../Services/APIService'
 import { Box, Card, CardContent, CircularProgress, Grid, Typography } from '@mui/material'
 import { useHostelTheme } from '../Services/HostelThemeContext'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -11,6 +11,7 @@ const ContactInfo = () => {
     const { menuBarColor } = useHostelTheme()
     const [contactInfo, setContactInfo] = useState({})
     const [loading, setLoading] = useState(false)
+    const [barcodeImage, setBarcodeImage] = useState("")
 
     const fetchContactInfo = async () => {
         const response = await getContactInfo(setLoading)
@@ -20,8 +21,14 @@ const ContactInfo = () => {
         }
     }
 
+    const fetchBarcodeImage = async () => {
+        const image = await getQRCode()
+        setBarcodeImage(`data:image/png;base64,${image}`)
+    }
+
     useEffect(() => {
         fetchContactInfo()
+        fetchBarcodeImage()
     }, [])
 
     const cardData = [
@@ -45,11 +52,25 @@ const ContactInfo = () => {
 
     return (
         <>
-
             <Box display="flex" alignItems="center" justifyContent="center" sx={{ padding: 2 }}>
                 <Box sx={{ width: "15%", borderBottom: `4px solid ${menuBarColor}`, mr: 2 }} />
                 <Typography variant="h3" fontSize="32px" fontWeight="bold" color={menuBarColor} textTransform="uppercase">Contact Us</Typography>
                 <Box sx={{ width: "15%", borderBottom: `4px solid ${menuBarColor}`, ml: 2 }} />
+            </Box>
+
+            <Box sx={{ py: 4 }}>
+                <Grid container spacing={3} justifyContent="center">
+                    <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+                        <Card sx={{ textAlign: 'center' }}>
+                            <CardContent>
+                                <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
+                                    Scan QR code for Enquiry
+                                </Typography>
+                                <img src={barcodeImage} alt="QR Code" style={{ width: "100%" }} />
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
             </Box>
 
             {loading ? (
@@ -61,6 +82,7 @@ const ContactInfo = () => {
                 <>
                     <Box sx={{ py: 4 }}>
                         <Grid container spacing={3} justifyContent="center">
+
                             {cardData.map((item, index) => (
                                 <Grid item size={{ xs: 12, sm: 6, md: 3 }} key={index}>
                                     <Card sx={{ textAlign: 'center', py: 4, height: '100%' }}>
@@ -99,7 +121,8 @@ const ContactInfo = () => {
                         </Grid>
                     </Grid>
                 </>
-            )}
+            )
+            }
         </>
     )
 }

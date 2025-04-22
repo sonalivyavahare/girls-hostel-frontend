@@ -43,7 +43,6 @@ const Home = () => {
 			<PlacesNearBy nearbyPlaces={places.slice(0, 3)} loading={loading}/>
 			<Testimonials testimonials={testimonials.slice(0, 3)} loading={loading} />
 			<GallaryCard images={images.slice(0, 6)} loading={loading} />
-			<RulesRegulations rules={rules.slice(0, 6)} loading={loading} />
 			<ContactInfo />
 		</>
 	)

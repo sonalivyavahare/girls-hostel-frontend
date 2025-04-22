@@ -18,6 +18,15 @@ import ContactUs from './Pages/ContactUs';
 import RulesAndRegulations from './Pages/RulesAndRegulations';
 import Gallary from './Pages/Gallary';
 import AboutUs from './Pages/AboutUs';
+import TermsAndConditions from './Pages/TermsAndConditions';
+import PrivacyPolicy from './Pages/PrivacyPolicy';
+import RefundPolicy from './Pages/RefundPolicy';
+import RegisterForm from './Components/Auth/RegisterForm';
+import LoginForm from './Components/Auth/LoginForm';
+import Rooms from './Pages/Rooms';
+import ProtectedRoute from './Components/ProtectedRoute';
+import PublicRoute from './Components/PublicRoute';
+import Profile from './Pages/Profile';
 
 
 function AppContent() {
@@ -34,6 +43,13 @@ function AppContent() {
 					<Route path="rules-regulations" element={<RulesAndRegulations />} />
 					<Route path="gallary" element={<Gallary />} />
 					<Route path="about-us" element={<AboutUs />} />
+					<Route path="terms-and-conditions" element={<TermsAndConditions />} />
+					<Route path="privacy-policy" element={<PrivacyPolicy />} />
+					<Route path="refund-policy" element={<RefundPolicy />} />
+					<Route path="register" element={<PublicRoute element={<RegisterForm />} />}  />
+					<Route path="login" element={<PublicRoute element={<LoginForm />} />}  />
+					<Route path="rooms" element={<ProtectedRoute element={<Rooms />} />} />
+					<Route path="profile" element={<ProtectedRoute element={<Profile />} />} />
 				</Route>
 			</Routes>
 		</>
