@@ -14,7 +14,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { getMenuBar } from '../Services/APIService';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useHostelTheme } from '../Services/HostelThemeContext';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
@@ -29,8 +29,10 @@ const pages = [
 	{ label: 'Contact', path: `${SITE_URI}/contact` },
 	{ label: 'About Us', path: `${SITE_URI}/about-us` },
 	{ label: 'Rooms', path: `${SITE_URI}/rooms` },
+	{ label: 'Login', path: `${SITE_URI}/login` },
 ];
 const Navbar = () => {
+	const navigate = useNavigate();
 	const location = useLocation();
 
 	const { setMenuBarColor } = useHostelTheme()
@@ -42,22 +44,17 @@ const Navbar = () => {
 	};
 
 	const [menuBar, setMenuBar] = useState({})
-	const [anchorEl, setAnchorEl] = useState(null);
-	const open = Boolean(anchorEl);
+
 	const isLoggedIn = !!sessionStorage.getItem('userToken'); // change as needed
 
 	const handleMenu = (event) => {
-		setAnchorEl(event.currentTarget);
+		navigate(`${SITE_URI}/profile`)
 	};
 
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
 
 	const handleLogout = () => {
 		sessionStorage.removeItem('userToken');
 		sessionStorage.removeItem('userId');
-		handleClose();
 		window.location.href = `${SITE_URI}/login`;
 	};
 
@@ -100,53 +97,37 @@ const Navbar = () => {
 
 						{/* Buttons for larger screens */}
 						<Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-							{pages.map((page) => {
-								const isActive = location.pathname === page.path;
+							{pages
+								.filter((page) => !(isLoggedIn && page.label === 'Login'))
+								.map((page) => {
+									const isActive = location.pathname === page.path;
 
-								return (
-									<Button
-										key={page.label}
-										component={Link}
-										to={page.path}
-										color="inherit"
-										sx={{
-											bgcolor: isActive ? 'White' : (menuBar.hostelManuBarColor || 'primary.main'),
-											color: isActive ? menuBar.hostelManuBarColor : 'inherit',
-											fontWeight: 'bold',
-											'&:hover': {
-												bgcolor: isActive ? menuBar.hostelManuBarColor : "white",
-												color: isActive ? "white" : menuBar.hostelManuBarColor,
-											},
-										}}
-									>
-										{page.label}
-									</Button>
-								);
-							})}
+									return (
+										<Button
+											key={page.label}
+											component={Link}
+											to={page.path}
+											color="inherit"
+											sx={{
+												bgcolor: isActive ? 'White' : (menuBar.hostelManuBarColor || 'primary.main'),
+												color: isActive ? menuBar.hostelManuBarColor : 'inherit',
+												fontWeight: 'bold',
+												'&:hover': {
+													bgcolor: isActive ? menuBar.hostelManuBarColor : "white",
+													color: isActive ? "white" : menuBar.hostelManuBarColor,
+												},
+											}}
+										>
+											{page.label}
+										</Button>
+									);
+								})}
 
 							{isLoggedIn && (
 								<>
 									<IconButton size="medium" edge="end" color="inherit" onClick={handleMenu}>
 										<AccountCircle />
 									</IconButton>
-									<Menu
-										anchorEl={anchorEl}
-										open={open}
-										onClose={handleClose}
-										anchorOrigin={{
-											vertical: 'bottom', 
-											horizontal: 'right',
-										}}
-										transformOrigin={{
-											vertical: 'top',
-											horizontal: 'right',
-										}}
-									>
-										<MenuItem onClick={handleClose} component={Link} to={`${SITE_URI}/profile`}>
-											Profile
-										</MenuItem>
-										<MenuItem onClick={handleLogout}>Logout</MenuItem>
-									</Menu>
 								</>
 							)}
 						</Box>
@@ -166,15 +147,17 @@ const Navbar = () => {
 						py: 1,
 					}}
 				>
-					{pages.map((page) => (
-						<Button
-							key={page.label}
-							sx={{ color: 'white', justifyContent: 'flex-start' }}
-							onClick={() => setMobileMenuOpen(false)}
-						>
-							{page.label}
-						</Button>
-					))}
+					{pages
+						.filter((page) => !(isLoggedIn && page.label === 'Login'))
+						.map((page) => (
+							<Button
+								key={page.label}
+								sx={{ color: 'white', justifyContent: 'flex-start' }}
+								onClick={() => setMobileMenuOpen(false)}
+							>
+								{page.label}
+							</Button>
+						))}
 					<Divider sx={{ borderColor: 'white', my: 1 }} />
 
 					{isLoggedIn && (

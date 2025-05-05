@@ -27,6 +27,8 @@ import Rooms from './Pages/Rooms';
 import ProtectedRoute from './Components/ProtectedRoute';
 import PublicRoute from './Components/PublicRoute';
 import Profile from './Pages/Profile';
+import Bookings from './Pages/Bookings';
+import RoomBooking from './Components/RoomBooking';
 
 
 function AppContent() {
@@ -46,9 +48,13 @@ function AppContent() {
 					<Route path="terms-and-conditions" element={<TermsAndConditions />} />
 					<Route path="privacy-policy" element={<PrivacyPolicy />} />
 					<Route path="refund-policy" element={<RefundPolicy />} />
-					<Route path="register" element={<PublicRoute element={<RegisterForm />} />}  />
+					<Route path="rooms" element={<Rooms />} />
+
+					{/* <Route path="register" element={<PublicRoute element={<RegisterForm />} />}  /> */}
 					<Route path="login" element={<PublicRoute element={<LoginForm />} />}  />
-					<Route path="rooms" element={<ProtectedRoute element={<Rooms />} />} />
+
+					<Route path="rooms/book/:id" element={<ProtectedRoute element={<RoomBooking />} />} />
+					<Route path="bookings" element={<ProtectedRoute element={<Bookings />} />} />
 					<Route path="profile" element={<ProtectedRoute element={<Profile />} />} />
 				</Route>
 			</Routes>

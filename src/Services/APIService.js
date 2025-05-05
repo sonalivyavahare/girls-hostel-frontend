@@ -1,9 +1,10 @@
 import axios from "axios";
 import { handleError } from "./ToastMessages";
+import { use } from "react";
 
-const API_URL = "http://localhost:9090"
+// const API_URL = "http://localhost:9090"
 
-// const API_URL = "https://pjsofttech.in:29443"
+const API_URL = "https://pjsofttech.in:29443"
 
 const API_URI = `${API_URL}/public`
 export const getMenuBar = async () => {
@@ -70,16 +71,13 @@ export const getAllTestimonials = async (setLoading) => {
     }
 }
 
-export const getAllRules = async (setLoading) => {
+export const getAllRules = async () => {
     try {
-        setLoading(true)
         return await axios.get(`${API_URI}/getRuleById/getAllRules`)
     } catch (error) {
         console.error(error)
         return null
-    } finally {
-        setLoading(false)
-    }
+    } 
 }
 
 export const getAllPhotos = async (setLoading) => {
@@ -162,10 +160,9 @@ export const registerUser = async (data) => {
     }
 }
 
-export const loginUser = async (data) => 
-    {
+export const loginUser = async (data) => {
     try {
-        return await axios.post(`${API_URI}/hostelUsers/loginHostelUser`, data)
+        return await axios.post(`${API_URI}/hostelUsers/login`, data)
     } catch (error) {
         console.log(error)
     }
@@ -179,11 +176,95 @@ export const getDetails = async (userId) => {
     }
 }
 
-export const updateProfile = async (data, userId) => {
+
+
+export const getUserDetails = async () => {
+    const userId = sessionStorage.getItem("userId")
+    const userToken = sessionStorage.getItem("userToken")
+    const headers = {
+        Authorization: `Bearer ${userToken}`
+    }
     try {
-        return await axios.put(`${API_URI}/hostelUsers/updateHostelUser/${userId}`, data)
+        return await axios.get(`${API_URL}/getPersonalInfoById/${userId}`, { headers })
     } catch (error) {
-        handleError(error.response.data)
         console.log(error)
+    }
+}
+
+export const updateProfile = async (data, file, userId) => {
+    const newData = new FormData();
+    newData.append('fullName', data.fullName || "");
+    // newData.append('email', data.email || "");
+    newData.append('dateOfBirth', data.dateOfBirth || "");
+    newData.append('age', data.age || "");
+    newData.append('gender', data.gender || "");
+    newData.append('maritalStatus', data.maritalStatus || "");
+    newData.append('bloodGroup', data.bloodGroup || "");
+    newData.append('religion', data.religion || "");
+    newData.append('personalPhoto', file || "");
+
+    const TOKEN = sessionStorage.getItem("userToken")
+    const headers = {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "multipart/form-data",
+    };
+
+    try {
+        return await axios.put(`${API_URL}/updatePersonalInformation/${userId}`, newData, { headers })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const getBookingDetails = async (formNumber) => {
+    const userToken = sessionStorage.getItem("userToken")
+    const headers = {
+        Authorization: `Bearer ${userToken}`
+    }
+    return await axios.get(`${API_URL}/admissionForms/getAdmissionFormByFormNumber/formNumber/${formNumber}`, { headers })
+
+}
+
+
+export const getAllFloors = async () => {
+
+    try {
+        return await axios.get(API_URI + "/getAllFloors")
+    } catch (e) {
+        handleError()
+    }
+}
+
+export const getAllRooms = async (floorId) => {
+    try {
+        return await axios.get(API_URI + `/getRoomsByFloor/${floorId}`)
+    } catch (e) {
+        handleError()
+    }
+}
+
+export const getAllBeds = async (roomId) => {
+    try {
+        return await axios.get(API_URI + `/beds/getBedsByRoom/${roomId}`)
+    } catch (e) {
+        handleError()
+    }
+}
+
+
+export const getRoomById = async (roomId) => {
+    try {
+        return await axios.get(API_URI + `/getRoomById/${roomId}`)
+    } catch (e) {
+        handleError()
+    }
+}
+
+export const getBedById = async (bedId) => {
+    try {
+        return await axios.get(API_URI + `/beds/getBedById/${bedId}`)
+    } catch (e) {
+        handleError()
     }
 }

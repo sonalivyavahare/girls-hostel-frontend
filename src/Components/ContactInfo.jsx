@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { getContactInfo, getQRCode } from '../Services/APIService'
-import { Box, Card, CardContent, CircularProgress, Grid, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, CircularProgress, Grid, Typography } from '@mui/material'
 import { useHostelTheme } from '../Services/HostelThemeContext'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import { Link } from 'react-router-dom';
 
 
 const ContactInfo = () => {
@@ -67,6 +68,14 @@ const ContactInfo = () => {
                                     Scan QR code for Enquiry
                                 </Typography>
                                 <img src={barcodeImage} alt="QR Code" style={{ width: "100%" }} />
+                                <Button
+                                    component="a"
+                                    href="https://pjsofttech.in/juii_girls_hostel_enquiryform/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    OR Click Here
+                                </Button>
                             </CardContent>
                         </Card>
                     </Grid>

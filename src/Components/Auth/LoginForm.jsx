@@ -53,11 +53,12 @@ export default function LoginForm() {
         const response = await loginUser(formData)
         if (response?.data) {
             handleSuccess(response.data.message)
-            navigate(`${SITE_URI}/rooms`)
+            navigate(`${SITE_URI}/profile`)
             sessionStorage.setItem("userToken", response.data.token)
             sessionStorage.setItem("userId", response.data.id)
+            sessionStorage.setItem("formNumber", response.data.formNumber)
         }
-        console.log(response.data)
+        console.log(response?.data)
     };
 
     const renderTextField = (label, name, type = "text", multiline = false, rows = 1) => (
@@ -112,12 +113,12 @@ export default function LoginForm() {
                                 Sign In
                             </Button>
                         </Grid>
-                        <Grid container justifyContent="flex-end">
+                        {/* <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Button component={Link}
-                                    to={`${SITE_URI}/register`} sx={{textTransform:"none"}}>Not having an account? Sign up</Button>
+                                    to={`${SITE_URI}/register`} sx={{ textTransform: "none" }}>Not having an account? Sign up</Button>
                             </Grid>
-                        </Grid>
+                        </Grid> */}
                     </Box>
                 </Box>
             </Paper>
